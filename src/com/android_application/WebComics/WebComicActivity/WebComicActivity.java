@@ -64,8 +64,7 @@ public abstract class WebComicActivity extends Activity {
 
         // Remove title
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.webcomic_display);
         setCrawler();
         FetchImageTask fetchTask = new FetchImageTask();
