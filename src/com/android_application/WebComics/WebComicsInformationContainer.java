@@ -41,7 +41,7 @@ public class WebComicsInformationContainer {
         crawlers[COMIC.XKCD.ordinal()] = new XkcdCrawler();
         crawlers[COMIC.ABSTRUSEGOOSE.ordinal()] = new AbstruseGooseCrawler();
         crawlers[COMIC.SMBC.ordinal()] = new SmbcCrawler();
-        //crawlers[COMIC.PHD.ordinal()] = new Ph
+        crawlers[COMIC.PHD.ordinal()] = new PhDCrawler();
 
         // Include image source
         imageSource[COMIC.XKCD.ordinal()] = R.drawable.xkcd;
