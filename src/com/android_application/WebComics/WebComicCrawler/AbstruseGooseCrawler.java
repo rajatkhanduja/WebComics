@@ -14,7 +14,7 @@ import java.io.IOException;
 public class AbstruseGooseCrawler extends WebComicCrawler {
     @Override
     protected ImageSrcAltTextPair getImageUrl(int comicIndex) throws IOException {
-        String abstruseGooseUrl = "http://www.abstrusegoose.com/" + (comicIndex < 0 ? "" : comicIndex);
+        String abstruseGooseUrl = "http://www.abstrusegoose.com/" + (comicIndex <= 0 ? "" : comicIndex);
         Log.d("webcomic_fetch_url", "Got url");
         Document doc = Jsoup.connect(abstruseGooseUrl).get();
         Element image = doc.select("section img").first();

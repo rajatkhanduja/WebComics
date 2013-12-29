@@ -6,10 +6,7 @@ package com.android_application.WebComics;
  */
 
 import com.android_application.WebComics.WebComicActivity.*;
-import com.android_application.WebComics.WebComicCrawler.AbstruseGooseCrawler;
-import com.android_application.WebComics.WebComicCrawler.SmbcCrawler;
-import com.android_application.WebComics.WebComicCrawler.WebComicCrawler;
-import com.android_application.WebComics.WebComicCrawler.XkcdCrawler;
+import com.android_application.WebComics.WebComicCrawler.*;
 
 /**
  * This is a singleton class which contains names of the webcomics and the relevant crawling information.

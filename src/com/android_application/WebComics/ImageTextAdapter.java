@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import com.android_application.WebComics.WebComicActivity.XkcdActivity;
 
 /**
  * User: rajat
@@ -47,9 +46,6 @@ public class ImageTextAdapter extends BaseAdapter {
 
         int imageId = WebComicsInformationContainer.getInstance().getImageSource(WebComicsInformationContainer.COMIC.values()[position]);
         String label = WebComicsInformationContainer.getInstance().getComicName(WebComicsInformationContainer.COMIC.values()[position]);
-        //final Class nextActivityClass = WebComicsInformationContainer.getInstance().getComicActivityClass(WebComicsInformationContainer.COMIC.values()[position]);
-
-        //Log.e("webcomic_null_test", " " + (nextActivityClass.toString()) + " position:" + position);
 
         ((ImageView) relativeLayout.findViewById(R.id.imageView)).setImageResource(imageId);
         ((TextView)relativeLayout.findViewById(R.id.textView)).setText(label);
