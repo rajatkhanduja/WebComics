@@ -1,5 +1,6 @@
 package com.android_application.WebComics.WebComicCrawler;
 
+import android.util.Log;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,6 +18,7 @@ public class SmbcCrawler extends WebComicCrawler{
     protected ImageSrcAltTextPair getImageUrl(int comicIndex) throws IOException {
         String smbcUrl = "http://www.smbc-comics.com/" + (comicIndex < 0 ? "" : "?id=" + comicIndex);
         Document doc = Jsoup.connect(smbcUrl).get();
+        Log.d("webcomic_fetch_url", "Got url");
         Element image = doc.select("#comicimage img").first();
         return new ImageSrcAltTextPair(image.absUrl("src"), image.attr("alt"));
     }

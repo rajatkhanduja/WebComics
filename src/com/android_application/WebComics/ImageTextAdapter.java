@@ -2,7 +2,6 @@ package com.android_application.WebComics;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
@@ -36,7 +35,7 @@ public class ImageTextAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         RelativeLayout relativeLayout;
 
         if (convertView == null){
@@ -48,9 +47,9 @@ public class ImageTextAdapter extends BaseAdapter {
 
         int imageId = WebComicsInformationContainer.getInstance().getImageSource(WebComicsInformationContainer.COMIC.values()[position]);
         String label = WebComicsInformationContainer.getInstance().getComicName(WebComicsInformationContainer.COMIC.values()[position]);
-        final Class nextActivityClass = WebComicsInformationContainer.getInstance().getComicActivityClass(WebComicsInformationContainer.COMIC.values()[position]);
+        //final Class nextActivityClass = WebComicsInformationContainer.getInstance().getComicActivityClass(WebComicsInformationContainer.COMIC.values()[position]);
 
-        Log.e("webcomic_null_test", " " + (nextActivityClass.toString()) + " position:" + position);
+        //Log.e("webcomic_null_test", " " + (nextActivityClass.toString()) + " position:" + position);
 
         ((ImageView) relativeLayout.findViewById(R.id.imageView)).setImageResource(imageId);
         ((TextView)relativeLayout.findViewById(R.id.textView)).setText(label);
@@ -58,7 +57,9 @@ public class ImageTextAdapter extends BaseAdapter {
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext, nextActivityClass));
+                Intent intent = new Intent(mContext, WebComicActivity.class);
+                intent.putExtra("comic_type", position);
+                mContext.startActivity(intent);
             }
         });
 

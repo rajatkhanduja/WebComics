@@ -1,4 +1,4 @@
-package com.android_application.WebComics.WebComicActivity;
+package com.android_application.WebComics;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -9,6 +9,7 @@ import android.view.*;
 import android.widget.ImageView;
 import com.android_application.WebComics.R;
 import com.android_application.WebComics.WebComicCrawler.WebComicCrawler;
+import com.android_application.WebComics.WebComicsInformationContainer;
 
 import java.io.IOException;
 
@@ -16,10 +17,9 @@ import java.io.IOException;
  * User: rajat
  * Date: 28/12/13
  */
-public abstract class WebComicActivity extends Activity {
+public class WebComicActivity extends Activity {
     protected WebComicCrawler crawler;
 
-    protected abstract void setCrawler();
     private int comicIndex = 1;
 
     private class ImageViewIntegerPair{
@@ -66,11 +66,9 @@ public abstract class WebComicActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.webcomic_display);
-        setCrawler();
+        crawler = WebComicsInformationContainer.getInstance().getCrawler(getIntent().getIntExtra("comic_type", -1));
         FetchImageTask fetchTask = new FetchImageTask();
         ImageView comic= (ImageView) findViewById(R.id.imageView);
         fetchTask.execute(new ImageViewIntegerPair(comic, comicIndex));
-
-        //comic.setOnTouchListener((View.OnTouchListener) new GestureDetector.SimpleOnGestureListener());
     }
 }

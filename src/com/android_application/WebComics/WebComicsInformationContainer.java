@@ -7,6 +7,7 @@ package com.android_application.WebComics;
 
 import com.android_application.WebComics.WebComicActivity.*;
 import com.android_application.WebComics.WebComicCrawler.AbstruseGooseCrawler;
+import com.android_application.WebComics.WebComicCrawler.SmbcCrawler;
 import com.android_application.WebComics.WebComicCrawler.WebComicCrawler;
 import com.android_application.WebComics.WebComicCrawler.XkcdCrawler;
 
@@ -16,8 +17,8 @@ import com.android_application.WebComics.WebComicCrawler.XkcdCrawler;
 public class WebComicsInformationContainer {
     private static WebComicsInformationContainer instance = new WebComicsInformationContainer();
 
-    public Class getComicActivityClass(COMIC comic) {
-        return comicActivityClass[comic.ordinal()];
+    public WebComicCrawler getCrawler(int comic_type) {
+        return crawlers[comic_type];
     }
 
     enum COMIC {
@@ -29,8 +30,8 @@ public class WebComicsInformationContainer {
 
     private int numberOfComics = COMIC.values().length;
     private String[] comicNames = new String[numberOfComics];
+    private WebComicCrawler[] crawlers = new WebComicCrawler[numberOfComics];
     private int[] imageSource = new int[numberOfComics];
-    private Class[] comicActivityClass = new Class[numberOfComics];
 
     private WebComicsInformationContainer(){
         // Include names
@@ -39,17 +40,17 @@ public class WebComicsInformationContainer {
         comicNames[COMIC.SMBC.ordinal()] = "Saturday Morning Breakfast Cereal";
         comicNames[COMIC.PHD.ordinal()] = "Piled Higher and Deeper";
 
+        // Include crawlers
+        crawlers[COMIC.XKCD.ordinal()] = new XkcdCrawler();
+        crawlers[COMIC.ABSTRUSEGOOSE.ordinal()] = new AbstruseGooseCrawler();
+        crawlers[COMIC.SMBC.ordinal()] = new SmbcCrawler();
+        //crawlers[COMIC.PHD.ordinal()] = new Ph
+
         // Include image source
         imageSource[COMIC.XKCD.ordinal()] = R.drawable.xkcd;
         imageSource[COMIC.ABSTRUSEGOOSE.ordinal()] = R.drawable.abstrusegoose;
         imageSource[COMIC.SMBC.ordinal()] = R.drawable.smbc;
         imageSource[COMIC.PHD.ordinal()] = R.drawable.phd_logo;
-
-        // Declare activities
-        comicActivityClass[COMIC.XKCD.ordinal()] = XkcdActivity.class;
-        comicActivityClass[COMIC.ABSTRUSEGOOSE.ordinal()] = AGActivity.class;
-        comicActivityClass[COMIC.SMBC.ordinal()] = SmbcActivity.class;
-        comicActivityClass[COMIC.PHD.ordinal()]  = PhdActivity.class;
     }
 
     public int getNumberOfComics(){

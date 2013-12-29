@@ -1,6 +1,7 @@
 package com.android_application.WebComics.WebComicCrawler;
 
 
+import android.util.Log;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -15,6 +16,7 @@ public class XkcdCrawler extends WebComicCrawler {
 
     protected WebComicCrawler.ImageSrcAltTextPair getImageUrl(int comicIndex) throws IOException {
         String xkcdUrl = "http://www.xkcd.com/" + (comicIndex == -1 ? "" : comicIndex);
+        Log.d("webcomic_fetch_url", "Got url");
         Document doc = Jsoup.connect(xkcdUrl).get();
         Element image = doc.select("#comic img").first();
 

@@ -13,9 +13,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".WebComicActivity.XkcdActivity"/>
-        <activity android:name=".WebComicActivity.PhdActivity"/>
-        <activity android:name=".WebComicActivity.SmbcActivity"/>
-        <activity android:name=".WebComicActivity.AGActivity"/>
+        <activity android:name=".WebComicActivity"/>
     </application>
 </manifest>
